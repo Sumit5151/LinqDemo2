@@ -71,7 +71,8 @@ namespace LinqDemo2.Controllers
 
 
             //singleOrDefault it handles null
-            var employee = db.Employees.SingleOrDefault(x => x.Id == 1);
+            var employee = db.Employees.SingleOrDefault();
+
 
 
             //Last
@@ -85,6 +86,122 @@ namespace LinqDemo2.Controllers
             }
 
             return View();
+        }
+
+
+        public void  Index2()
+        {
+            //List<int> numbers = new List<int>() { 1, 100, 2, 54, 3, 4, 5, 6, 7, 8};
+            //List<string> states = new List<string>() { "Maharashtra","Goa","Karnatka"};
+            //List<char> charList = new List<char>() { 'A','a','C','D'};
+
+            //var lastNumber = numbers.Last();
+            //Console.WriteLine($"Lastnumber= {lastNumber}");
+
+            //var lastState = states.Last();
+            //Console.WriteLine($"Last state in the list = {lastState}");
+            ////This line will through the exception
+            ////var number10 = numbers.Last(x => x == 10);
+
+
+            //var number10 = numbers.LastOrDefault(x => x == 10);
+            //var andhraState = states.LastOrDefault(x => x == "Andhara");
+            //var emp = db.Employees.OrderBy(x=>x.Id).LastOrDefault(x=>x.Name == "Onkar");
+
+
+            //Select operator, Projection operator
+
+            //This will select all the columns from the DB
+            //var employees =  db.Employees.ToList();
+
+            //Q Select only the name column 
+            //var employeeNames = db.Employees.Select(x => x.Name);
+
+
+            //foreach (var empName in employeeNames)
+            //{
+            //    Console.WriteLine(empName);
+            //}
+
+
+
+            ////Q Select only the name and Email column 
+            //var employeeNamesAndEmails = db.Employees.Select(x => new EmployeeNameAndEmails
+            //                                                        {
+            //                                                            Name1 = x.Name,
+            //                                                            Email1 = x.Email
+            //                                                        }
+
+            //                                                    ).ToList();
+
+
+            //foreach (var empNameAndEmail in employeeNamesAndEmails)
+            //{
+            //    Console.WriteLine($" {empNameAndEmail.Name1}   {empNameAndEmail.Email1} ");
+            //}
+
+
+
+            //Q Select only the name and Email and Salary column 
+
+            //var employeeNameEmailSalary = db.Employees.Select(x => new
+            //                                                    {
+            //                                                       emploeeName = x.Name,
+            //                                                       email = x.Email,
+            //                                                       salary= x.Salary
+
+            //                                                    }).ToList();
+
+
+            //foreach (var emp in employeeNameEmailSalary)
+            //{
+            //    Console.WriteLine($" {emp.emploeeName}   {emp.email}  {emp.salary} ");
+            //}
+
+
+
+            //Aggreage function 
+
+            List<int> numbers = new List<int>() { 7, 10, 2, 54, 3, 4, 54, 6, 74, 8};
+
+
+            //int max = numbers[0];
+
+            //for (int i = 1; i < numbers.Count; i++)
+            //{
+            //    if(max < numbers[i])
+            //    {
+            //        max = numbers[i];
+            //    }
+
+            //}
+            //Console.WriteLine($" Maximum number = {max}");
+
+
+           var maxNumber =  numbers.Max();
+           Console.WriteLine($" Maximum number = {maxNumber}");
+
+            var minNumber = numbers.Min();
+
+            var countOfNumber = numbers.Count();
+
+            var sumOfNumber = numbers.Sum();
+
+            var average  = numbers.Average();
+
+
+
+            var maxSalary = db.Employees.Select(x => x.Salary).Max();
+
+            var totalSalaryofItEmployees = db.Employees.Where(x=>x.DepartmentId == 2)
+                                                       .Select(x => x.Salary)
+                                                       .Max();
+
+
+
+
+
+
         }
 
         public IActionResult Privacy()
