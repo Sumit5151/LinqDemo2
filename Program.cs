@@ -1,4 +1,4 @@
-using LinqDemo2.DAL;
+using LinqDemo2.dal;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

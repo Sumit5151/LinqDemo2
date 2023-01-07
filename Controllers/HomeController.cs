@@ -1,4 +1,5 @@
-﻿using LinqDemo2.DAL;
+﻿
+using LinqDemo2.dal;
 using LinqDemo2.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -18,31 +19,31 @@ namespace LinqDemo2.Controllers
 
 
 
-        
- //  1) First() Vs FirstOrDefalut()
-   
- //   if you dont found records in the database first will not handle null and it throws exception
 
- //   but FirtorDefalut will handle null and will not throw exception
-	
-	
- //  2) Single() Vs SingleOrDefault()
- //  if you dont found records in the database Single will not handle null and it throws exception
+        //  1) First() Vs FirstOrDefalut()
 
- //   but SingleOrDefault will handle null and will not throw exception
-	
-	
-   
- //  3) First() Vs Single()
- //   if you found multiple matching records then first will return first matching records
-	//if you found multiple matching records then Single will throw exception
-	
-   
-   
-   
- //  4) FirstOrDefalut() vs SingleOrDefalut()
- //  if you found multiple matching records then FirstOrDefalut will return first matching records
-	//if you found multiple matching records then SingleOrDefalut will throw exception
+        //   if you dont found records in the database first will not handle null and it throws exception
+
+        //   but FirtorDefalut will handle null and will not throw exception
+
+
+        //  2) Single() Vs SingleOrDefault()
+        //  if you dont found records in the database Single will not handle null and it throws exception
+
+        //   but SingleOrDefault will handle null and will not throw exception
+
+
+
+        //  3) First() Vs Single()
+        //   if you found multiple matching records then first will return first matching records
+        //if you found multiple matching records then Single will throw exception
+
+
+
+
+        //  4) FirstOrDefalut() vs SingleOrDefalut()
+        //  if you found multiple matching records then FirstOrDefalut will return first matching records
+        //if you found multiple matching records then SingleOrDefalut will throw exception
 
         public IActionResult Index()
         {
@@ -89,7 +90,7 @@ namespace LinqDemo2.Controllers
         }
 
 
-        public void  Index2()
+        public void Index2()
         {
             //List<int> numbers = new List<int>() { 1, 100, 2, 54, 3, 4, 5, 6, 7, 8};
             //List<string> states = new List<string>() { "Maharashtra","Goa","Karnatka"};
@@ -162,7 +163,7 @@ namespace LinqDemo2.Controllers
 
             //Aggreage function 
 
-            List<int> numbers = new List<int>() { 7, 10, 2, 54, 3, 4, 54, 6, 74, 8};
+            //List<int> numbers = new List<int>() { 7, 10, 2, 54, 3, 4, 54, 6, 74, 8};
 
 
             //int max = numbers[0];
@@ -178,27 +179,80 @@ namespace LinqDemo2.Controllers
             //Console.WriteLine($" Maximum number = {max}");
 
 
-           var maxNumber =  numbers.Max();
-           Console.WriteLine($" Maximum number = {maxNumber}");
+            //var maxNumber =  numbers.Max();
+            //Console.WriteLine($" Maximum number = {maxNumber}");
 
-            var minNumber = numbers.Min();
+            // var minNumber = numbers.Min();
 
-            var countOfNumber = numbers.Count();
+            // var countOfNumber = numbers.Count();
 
-            var sumOfNumber = numbers.Sum();
+            // var sumOfNumber = numbers.Sum();
 
-            var average  = numbers.Average();
-
-
-
-            var maxSalary = db.Employees.Select(x => x.Salary).Max();
-
-            var totalSalaryofItEmployees = db.Employees.Where(x=>x.DepartmentId == 2)
-                                                       .Select(x => x.Salary)
-                                                       .Max();
+            // var average  = numbers.Average();
 
 
 
+            // var maxSalary = db.Employees.Select(x => x.Salary).Max();
+
+            // var totalSalaryofItEmployees = db.Employees.Where(x=>x.DepartmentId == 2)
+            //                                            .Select(x => x.Salary)
+            //                                            .Max();
+
+            // var employees = db.Employees.Where(x => x.City != "Pune" && x.Salary > 5000).ToList();
+
+
+            //Aggreagate()
+
+
+            //List<int> numbers = new List<int>() { 7, 10, 2, 54, 3, 4, 54, 6, 74, 8 };
+            //var sumOfNubmers = numbers.Aggregate((a, b) => a + b);
+            //var sum = numbers.Sum();
+
+            //var mulOfNubmers = numbers.Aggregate((a, b) => a * b);
+
+
+
+            //List<string> states = new List<string>() { "Maharashtra", "Goa", "Karnatka", "Jahrkhand", "Bihar", "Kashmir" };
+
+
+            //var concatinatedStates = states.Aggregate((a, b) => a + ", " + b);
+
+            //var employeeNames = db.Employees.Select(x => x.Name).ToList()
+            //                                .Aggregate((a, b) => a + ", " + b);
+
+
+
+
+            //orderby() orderByDesending
+
+            //var employeesOrderBySalary = db.Employees.OrderBy(x => x.Salary).ToList();
+            //var employeesOrderBySalary = db.Employees.OrderByDescending(x => x.Salary).ToList();
+
+            //foreach (var emp in employeesOrderBySalary)
+            //{
+            //    Console.WriteLine($" {emp.Name}  {emp.Salary}  {emp.Gender}");
+            //}
+
+
+            //var employeesOrderByGender = db.Employees.OrderByDescending(x => x.Gender).ToList();
+
+            //foreach (var emp in employeesOrderByGender)
+            //{
+            //    Console.WriteLine($" {emp.Name}  {emp.Salary}  {emp.Gender}");
+            //}
+
+
+
+            //ThenBy() ThenByDesending()
+
+
+            //var employeesOrderBySalary = db.Employees.OrderBy(x => x.Gender).ThenByDescending(x=>x.Salary).ToList();
+            var employeesOrderBySalary = db.Employees.OrderBy(x => x.Gender).ThenBy(x=>x.Name).ToList();
+
+            foreach (var emp in employeesOrderBySalary)
+            {
+                Console.WriteLine($" {emp.Name}  {emp.Salary}  {emp.Gender}");
+            }
 
 
 

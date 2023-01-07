@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LinqDemo2.DAL;
+namespace LinqDemo2.dal;
 
 public partial class User
 {
